@@ -207,6 +207,16 @@ workflows:
           matrix:
             parameters:
               os: [linux, macos, machine]
+      - integration-test-use-nvmrc-version:
+          filters: *filters
+          matrix:
+            parameters:
+              os: [linux, macos, machine]
+      - integration-test-use-node-version-version:
+          filters: *filters
+          matrix:
+            parameters:
+              os: [linux, macos, machine]
       - node/test:
           filters: *filters
           name: node-npm-jest-test-job
@@ -387,6 +397,8 @@ workflows:
             - integration-test-install-lts
             - integration-test-install-pnpm
             - integration-test-pnpm
+            - integration-test-use-nvmrc-version
+            - integration-test-use-node-version-version
             - node-yarn-mocha-with-test-result-path-job
             - node-test-results-file-job
             - node-run-npm-job
