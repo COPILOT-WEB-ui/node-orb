@@ -22,6 +22,10 @@ executors:
   machine:
     machine:
       image: ubuntu-2004:current
+  machine-xlarge:
+    machine:
+      image: ubuntu-2004:current
+    resource_class: xlarge
   windows:
     machine:
       image: windows-server-2022-gui:current
@@ -200,6 +204,8 @@ workflows:
   test-deploy:
     jobs:
       - integration-test-reinstall-yarn
+      - node/install:
+          executor: machine-xlarge
       - integration-test-install-specified-version:
           filters: *filters
           matrix:
