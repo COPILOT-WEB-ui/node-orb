@@ -199,13 +199,15 @@ jobs:
           app-dir: "~/project/sample"
           override-ci-command: yarn install
       - run: cd ~/project/sample && yarn test
-
+  install-xlarge:
+    executor: machine-xlarge
+    steps:
+      - node/install
 workflows:
   test-deploy:
     jobs:
       - integration-test-reinstall-yarn
-      - node/install:
-          executor: machine-xlarge
+      - install-xlarge
       - integration-test-install-specified-version:
           filters: *filters
           matrix:
